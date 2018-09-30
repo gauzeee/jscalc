@@ -10,7 +10,7 @@ let total = 5000,
     counterHours = document.getElementById('counter-hours'),
     counterRate = document.getElementById('counter-rate'),
     changesCheck = document.getElementById('changes-check'),
-    cmsCheck = document.getElementById('changes-cms'),
+    changesCms = document.getElementById('changes-cms'),
     totalValue = document.getElementsByClassName('total-count')[0],
     input = document.querySelectorAll('input');
 
@@ -64,4 +64,58 @@ window.addEventListener('DOMContentLoaded', function() {
         total = corp;
         totalValue.value = total;
     });
+
+    counterBlock.addEventListener('change', () => {
+        counterHours.value = '';
+        counterRate.value = '';
+        total = counterBlock.value * blocks;
+        totalValue.value = total;
+    });
+
+    counterPages.addEventListener('change', () => {
+        counterHours.value = '';
+        counterRate.value = '';
+        total = counterPages.value * pages;
+        totalValue.value = total;
+    });
+
+    counterHours.addEventListener('change', () => {
+        counterBlock.value = '';
+        counterPages.value = '';
+        total = 0;
+        time = counterHours.value;
+        hourRate = time * counterRate.value;
+        totalValue.value = hourRate;
+        total = hourRate;
+    });
+
+    counterRate.addEventListener('change', () => {
+        counterBlock.value = '';
+        counterPages.value = '';
+        total = 0;
+        hourRate = time * counterRate.value;
+        totalValue.value = hourRate;
+        total = hourRate;
+    });
+
+    changesCheck.addEventListener('change', () => {
+        if (changesCheck.checked) {
+            total += changes;
+            totalValue.value = total;
+        } else {
+            total -= changes;
+            totalValue.value = total;
+        }
+    });
+
+    changesCms.addEventListener('change', () => {
+        if (changesCms.checked) {
+            total += cms;
+            totalValue.value = total;
+        } else {
+            total -= cms;
+            totalValue.value = total;
+        }
+    });
 });
+
